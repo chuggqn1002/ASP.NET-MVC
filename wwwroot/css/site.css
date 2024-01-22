@@ -1,0 +1,65 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.app-navbar {
+  background: rgba(0, 0, 0, 0.8);
+}
+.app-navbar .text-dark {
+  color: #b9c3ce !important;
+}
+.app-navbar .text-dark:hover {
+  color: white !important;
+}
+.app-navbar .navbar-brand {
+  color: #a57dea;
+}
+.app-navbar .navbar-brand:hover {
+  color: #d727da !important;
+}
+.app-navbar .dropdown-toggle {
+  border-color: #a562ad;
+  color: #ae84b3;
+}
+
+.contact-firstcol {
+  background-color: #9854a0;
+  color: white;
+  text-align: center;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+.contact-firstcol h4 {
+  line-height: 40px;
+  font-weight: 400;
+  margin-top: 20px;
+}
+.contact-firstcol img {
+  width: 100px;
+}
+
+.form-contact label {
+  font-weight: 700;
+}
+.form-contact .btn-primary {
+  background-color: #9854a0 !important;
+  border-color: #9854a0 !important;
+}

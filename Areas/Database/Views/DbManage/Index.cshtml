@@ -1,0 +1,55 @@
+﻿@using Microsoft.EntityFrameworkCore
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@inject AppDbContext db;
+@{
+    ViewData["Title"] = "Thong tin Bd";
+    var connect = db.Database.GetDbConnection();
+    var dbname = connect.Database;
+    var can_connect = db.Database.CanConnect();
+
+    
+}
+<partial name="_AlertMessage"/>
+<h2>Thong tin ve CSDL</h2>
+<p>- Database: @dbname</p>
+<p>- Source: @connect.DataSource</p>
+<p>- State: @connect.State</p>
+<hr />
+<h2>migrations</h2>
+@foreach (var migration in db.Database.GetAppliedMigrations())
+{
+    <p>@migration (apply)</p>
+}
+@foreach (var migration in db.Database.GetPendingMigrations())
+{
+    <p>@migration (pending)</p>
+}
+@if (!can_connect)
+{
+    <p class="alert alert-danger"> khong the ket noi database</p>
+}
+@if (db.Database.GetPendingMigrations().Any())
+{
+    <form method="post">
+        <button type="submit" class="btn btn-success" asp-action="Migrate">Tao database (Migration)</button>
+    </form>
+   
+}
+else
+{
+    <h2>Cac table</h2>
+    await db.Database.OpenConnectionAsync();
+    var table = db.Database.GetDbConnection().GetSchema("Tables");
+    <ul>
+    @foreach (System.Data.DataRow row in table.Rows)
+    {
+        <li>@row["TABLE_NAME"]</li>
+    }
+    </ul>
+    <a class="btn btn-danger" asp-action="DeleteDb">Xoa database @dbname</a>
+    <a class="btn btn-danger" asp-action="SeedData">Seed database</a>
+
+}
+
